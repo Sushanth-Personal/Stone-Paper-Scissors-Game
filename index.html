@@ -11,9 +11,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Dangrek&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dangrek&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <!-- Main header -->
     <div class="score-sheet">
       <div class="title">
         <pre>
@@ -33,8 +37,8 @@ SCISSORS</pre
         <h1 id="your-score">0</h1>
       </div>
     </div>
+    <!-- Game body -->
     <div class="game">
-        
       <div class="row-1">
         <div class="line1"></div>
         <div class="hand-sign hand-sign-1">
@@ -52,19 +56,39 @@ SCISSORS</pre
       <div class="line2"></div>
       <div class="line3"></div>
     </div>
+    <!-- Rules popup -->
     <button class="rules-button" id="rules-button">RULES</button>
     <div class="rules-container">
-        <div class="rules">
-            <h1>Game Rules</h1>
-            <ul>
-                <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
-                <li>Agree ahead of time whether you’ll count off “rock, paper, scissors, shoot” or just “rock, paper, scissors.”</li>
-                <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time</li>
-                <li>If both players lay down the same hand, each player lays down another hand</li>
-            </ul>
-        </div>
-         <button class="close-button" id="close-button">X</button>
+      <div class="rules">
+        <h1>Game Rules</h1>
+        <ul>
+          <li>
+            Rock beats scissors, scissors beat paper, and paper beats rock.
+          </li>
+          <li>
+            Agree ahead of time whether you’ll count off “rock, paper, scissors,
+            shoot” or just “rock, paper, scissors.”
+          </li>
+          <li>
+            Use rock, paper, scissors to settle minor decisions or simply play
+            to pass the time
+          </li>
+          <li>
+            If both players lay down the same hand, each player lays down
+            another hand
+          </li>
+        </ul>
+      </div>
+      <button class="close-button" id="close-button">X</button>
     </div>
+    <div class="halo">
+      <div class="circle1">
+        <div class="circle2">
+          <div class="circle3"></div>
+        </div>
+      </div>
+  </div>
+  <div class="loading-text">PC PICKING ... </div>
   </body>
   <script src="script.js"></script>
 </html>

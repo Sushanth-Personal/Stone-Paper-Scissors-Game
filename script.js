@@ -8,6 +8,8 @@ let signLeft = document.querySelector(".hand-sign-1");
 let signRight = document.querySelector(".hand-sign-2");
 let signBottom = document.querySelector(".hand-sign-3");
 
+let url=["images/scissor.png","images/paper.png","images/stone.png"]
+
 closeButton.addEventListener("click", () => {
   rules.style.transformOrigin = "top right";
   rules.style.transform = "scale(0)";
@@ -21,6 +23,8 @@ rulesButton.addEventListener("click", () => {
 });
 
 function clickAnimation(sign) {
+  
+
   document.querySelector(".line1").style.display = "none";
   document.querySelector(".line2").style.display = "none";
   document.querySelector(".line3").style.display = "none";
@@ -65,15 +69,80 @@ function clickAnimation(sign) {
     signRight.style.height = "140px";
     signBottom.style.width = "140px";
     signBottom.style.height = "140px";
+
+  
   }, 500); // Adjust the delay to match your transition duration (0.5s)
+
+  setTimeout(()=>{
+    document.querySelector('.halo').style.display='flex';
+  },1100);
+  
+
+
+signLeft.removeEventListener("click",leftHandler);
+signRight.removeEventListener("click",rightHandler);
+signBottom.removeEventListener("click",bottomHandler);
+
+pcSelectionAnimation();
+
 }
 
-signLeft.addEventListener("click", () => {
+function leftHandler(){
   clickAnimation("scissor");
-});
-signRight.addEventListener("click", () => {
+}
+function rightHandler(){
   clickAnimation("paper");
-});
-signBottom.addEventListener("click", () => {
+}
+function bottomHandler(){
   clickAnimation("stone");
-});
+}
+
+signLeft.addEventListener("click", leftHandler);
+signRight.addEventListener("click", rightHandler);
+signBottom.addEventListener("click", bottomHandler);
+
+function pcSelectionAnimation() {
+  let img=document.querySelector('.hand-sign-2 img');
+  let text=document.querySelector('.loading-text');
+
+  setTimeout(()=>{
+    
+    img.style.width='100px';
+    img.style.height='100px';
+    setInterval(() => {
+      text.style.color='white';
+    }, 150);
+    img.src="images/loading.png";
+    
+    img.style.transition='transform 3s linear';
+  img.style.transform='rotate(1800deg)';
+ 
+  },1200);
+  img.addEventListener('transitionend', () => {
+    pcSelection();
+  });
+}
+
+function pcSelection(){
+  let imgChoice=getRandomNumber();
+  let img=document.querySelector('.hand-sign-2 img');
+  img.src=`${url[imgChoice]}`;
+  if(imgChoice==0){
+    img.style.width='42px';
+    img.style.height='57px';
+  }
+  if(imgChoice==1){
+    img.style.width='72px';
+    img.style.height='72px';
+  }
+  if(imgChoice==2){
+    img.style.width='80px';
+    img.style.height='59px';
+  }
+
+}
+
+function getRandomNumber(){
+  let randomNumber=Math.ceil(Math.random()*3);
+  return randomNumber-1;
+}
