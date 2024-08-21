@@ -1,12 +1,16 @@
 body{
+    height: 100vh;
+    width: 100vw;
     margin:0;
     padding:0;
+    padding-top: 100px;
     background-color: #8CC461;
     font-family: 'Roboto';
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 
 }
 
@@ -19,7 +23,7 @@ body{
     align-items: center;
     border:2px solid white;
     border-radius:12px;
-    margin-top:100px;
+
 }
 
 .title{
@@ -58,5 +62,90 @@ body{
     font-size:4rem;
     margin:0;
     
+}
+
+.game{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:400px;
+    height: 400px;
+    /* border:1px solid white; */
+    align-items: center;
+    position: relative;
+
+}
+.row-1{
+    width:100%;
+    margin:60px;
+    /* border:1px solid white; */
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+}
+
+.line1{
+    position: absolute;
+    height: 15px;
+    background-color: rgba(0,0,0,0.64);
+    left: 20%;
+    right: 20%;
+    top:50%;
+    z-index: 5;
+
+}
+
+.line2{
+    position: absolute;
+    height: 15px;
+    width:250px;
+    background-color: rgba(0,0,0,0.64);
+    left: 42%;
+    top:200px;
+    z-index: 5;
+    transform: rotate(-58deg);
+ 
+}
+.line3{
+    position: absolute;
+    height: 15px;
+    width:250px;
+    background-color: rgba(0,0,0,0.64);
+    left: 0.6%;
+    top:200px;
+    z-index: 5;
+    transform: rotate(58deg);
+ 
+}
+.row-2{
+    align-self: center;
+    z-index: 10;
+}
+.hand-sign{
+    height: 110px;
+    width: 110px;
+    border:16px solid;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 3px 0 21px 1px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.hand-sign-1{
+    border-color: #0074B6;
+    z-index: 10;
+}
+.hand-sign-2{
+    border-color: #BD00FF;
+    z-index: 10;
+}
+
+.hand-sign-3{
+    border-color: #FFA943;
+    z-index: 10;
 }
 

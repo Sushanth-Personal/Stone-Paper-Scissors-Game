@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stone Paper Scissors</title>
-    <meta content="Author name" description="Sushanth P">
-    <meta content="email id" description="sushanthp.calicut@gmail.com">
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-
-</head>
-<body>
+    <meta content="Author name" description="Sushanth P" />
+    <meta content="email id" description="sushanthp.calicut@gmail.com" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+    />
+  </head>
+  <body>
     <div class="Score-sheet">
-        <div class="title">
+      <div class="title">
         <pre>
 ROCK
 PAPER
-SCISSORS</pre>
+SCISSORS</pre
+        >
+      </div>
+
+      <div class="computer-score">
+        COMPUTER SCORE
+        <h1 id="computer-score">0</h1>
+      </div>
+
+      <div class="your-score">
+        YOUR SCORE
+        <h1 id="your-score">0</h1>
+      </div>
     </div>
-            
-        <div class="computer-score">COMPUTER SCORE
-            <h1 id="computer-score">0</h1>
-        </div>
+    <div class="game">
         
-        <div class="your-score">YOUR SCORE
-            <h1 id="your-score">0</h1>
+      <div class="row-1">
+        <div class="line1"></div>
+        <div class="hand-sign hand-sign-1">
+          <img src="images/scissor.png" id="scissor" />
         </div>
-        
+        <div class="hand-sign hand-sign-2">
+          <img src="images/paper.png" id="scissor" />
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="hand-sign hand-sign-3">
+          <img src="images/stone.png" id="scissor" />
+        </div>
+      </div>
+      <div class="line2"></div>
+      <div class="line3"></div>
     </div>
-<div class="game"></div>
-</body>
-<script src="script.js"></script>
+  </body>
+  <script src="script.js"></script>
 </html>
