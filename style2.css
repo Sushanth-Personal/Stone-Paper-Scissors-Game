@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     box-sizing: border-box;
     position: relative;
   }
@@ -249,38 +249,64 @@ body {
     position:absolute;
     top:80px;
     left: 170px;
+
   }
-  
+
+  .middle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .you-win{
+
     font-weight: 800;
     font-size:39px;
     letter-spacing: 10%;
     text-align: center;
-    transform: translate(0,100px);
+    color:white;
+    transform: translate(0,60px);
+
   }
   
   .against-pc{
+
     font-weight: 800;
     font-size:25px;
     letter-spacing: 10%;
     text-align: center;
-    transform: translate(0,-20px);
+    transform: translate(0,60px);
+    color: white;
+  }
+
+  .play-again{
+    font-size: 15px;
+    color: #6B6B6B;
+    font-weight: 600;
+    width: 174px;
+    height: 44px;
+    background-color: white;
+    border:none;
+    border-radius: 9px;
+    transform: translate(0,90px);
   }
 
   .game-container{
     width:80vw;
-    height: 70vh;
+    height: 50vh;
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-start;
-   
+    align-items: center;
+ 
   }
 
   .left-handsign-container{
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     width: 500px;
     height: 500px;
   }
@@ -288,7 +314,8 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
     width: 500px;
     height: 500px;
   }
@@ -296,10 +323,18 @@ body {
   #left{
     position:absolute;
     z-index: 10;
+    top:200px;
+    left: 150px;
+ 
   
   }
 
   #right{
     position: absolute;
     z-index:10;
+    top:200px;
+    right: 100px;
+
   }
+
+ 

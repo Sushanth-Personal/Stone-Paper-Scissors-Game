@@ -67,8 +67,8 @@ function clickAnimation(sign) {
   setTimeout(() => {
     signLeft.style.transition = "0s";
     signLeft.style.transform = "scale(0)";
-    signBottom.style.transform = "translateX(-21.5vw) translateY(-135px)";
-    signRight.style.transform = "translateX(16vw) translateY(100px)";
+    signBottom.style.transform = "translateX(-21.5vw) translateY(-180px)";
+    signRight.style.transform = "translateX(16vw) translateY(50px)";
     signRight.style.width = "140px";
     signRight.style.height = "140px";
     signBottom.style.width = "140px";
@@ -81,12 +81,6 @@ function clickAnimation(sign) {
     });
   }, 500); // Adjust the delay to match your transition duration (0.5s)
 
-  setTimeout(() => {
-    document.querySelector(".halo").style.display = "flex";
-    document.querySelector(".you-picked").style.transform =
-      "translateX(-20vw) translateY(270px)";
-    document.querySelector(".you-picked").style.color = "white";
-  }, 1100);
 
   signLeft.removeEventListener("click", leftHandler);
   signRight.removeEventListener("click", rightHandler);
@@ -118,8 +112,8 @@ function pcSelectionAnimation() {
 
     img.src = "images/loading.png";
 
-    img.style.transition = "transform 3s linear";
-    img.style.transform = "rotate(1800deg)";
+    img.style.transition = "transform 2s linear";
+    img.style.transform = "rotate(1200deg)";
   }, 1200);
   img.addEventListener("transitionend", () => {
     pcSelection();
@@ -161,8 +155,20 @@ function removeFirstScreen() {
 }
 
 function addSecondScreen() {
+
+  
+  const linkElement = document.querySelector(
+    'link[rel="stylesheet"][href="style.css"]'
+  );
+
+  // Change the href attribute to point to style2.css
+  if (linkElement) {
+    linkElement.href = "style2.css";
+  }
+
   const container = document.createElement("div");
   winner = decideWinner();
+
   if (winner == "you") {
     container.innerHTML = `
   <div class="game-container">
@@ -171,11 +177,16 @@ function addSecondScreen() {
       <div class="circle1"></div>
       <div class="circle2"></div>
       <div class="circle3"></div>
-</div> 
+    </div> 
       <div class="you-picked">YOU PICKED</div>
       <div class="hand-sign ${yourChoiceStyle[yourChoice]}" id="left">
           <img src="${url[yourChoice]}" />
         </div>
+    </div>
+        <div class="middle">
+        <div class="you-win">YOU WIN</div>
+        <div class="against-pc">AGAINST PC</div>
+        <button class="play-again">PLAY AGAIN</button>
     </div>
     <div class="right-handsign-container">
              <div class="hand-sign ${yourChoiceStyle[pcChoice]}" id="right">
@@ -193,6 +204,11 @@ function addSecondScreen() {
       <div class="hand-sign ${yourChoiceStyle[yourChoice]}" id="left">
           <img src="${url[yourChoice]}" />
         </div>
+    </div>
+        <div class="middle">
+        <div class="you-win">YOU LOST</div>
+        <div class="against-pc">AGAINST PC</div>
+        <button class="play-again">PLAY AGAIN</button>
     </div>
     <div class="right-handsign-container">
             <div class="halo">
@@ -217,6 +233,10 @@ function addSecondScreen() {
           <img src="${url[yourChoice]}" />
         </div>
     </div>
+    <div class="middle">
+        <div class="you-win">TIE UP</div>
+        <button class="play-again">REPLAY</button>
+    </div>
     <div class="right-handsign-container">
           <div class="hand-sign ${yourChoiceStyle[pcChoice]}" id="right">
           <img src="${url[pcChoice]}"  />
@@ -227,27 +247,19 @@ function addSecondScreen() {
 
   document.body.appendChild(container);
 
-  const linkElement = document.querySelector(
-    'link[rel="stylesheet"][href="style.css"]'
-  );
-
-  // Change the href attribute to point to style2.css
-  if (linkElement) {
-    linkElement.href = "style2.css";
+  if (winner == "pc") {
+    document.querySelector(".halo").style.left = "115px";
   }
 
+  
+  // let playAgain=document.querySelector('.play-again');
 
-    document.getElementById("left").style.left = "150px";
-    document.getElementById("left").style.top = "200px";
-    document.getElementById("right").style.right = "100px";
-    document.getElementById("right").style.top = "200px";
+  // playAgain.addEventListener("click",()=>{
 
-    if(winner=="pc"){
-      document.querySelector('.halo').style.left='115px';
-    }
+  // })
+    startHaloAnimation();
 
 
-  startHaloAnimation();
 }
 
 function startHaloAnimation() {
