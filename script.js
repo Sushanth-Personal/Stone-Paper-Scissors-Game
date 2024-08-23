@@ -1,29 +1,30 @@
 /**######################################################################################## */
-  //SECTION : INFORMATION
+//SECTION : INFORMATION
 /**######################################################################################## */
 /*
-*
-*
-* AUTHOR    : SUSHANTH P
-*
-* MAIL ID   : sushanthp.calicut@gmail.com
-*
-* TITLE     : STONE PAPER SCISSORS GAME SCRIPT
-*
-*
-*/
+ *
+ *
+ * AUTHOR    : SUSHANTH P
+ *
+ * MAIL ID   : sushanthp.calicut@gmail.com
+ *
+ * TITLE     : STONE PAPER SCISSORS GAME SCRIPT
+ *
+ *
+ */
 
 /**######################################################################################## */
-  //SECTION : GLOBAL VARIABLE DECLARATION
+//SECTION : GLOBAL VARIABLE DECLARATION
 /**######################################################################################## */
 
 // Arrays for storing image URLs and corresponding styles
 let url = ["images/scissor.png", "images/paper.png", "images/stone.png"];
 let yourChoiceStyle = ["hand-sign-1", "hand-sign-2", "hand-sign-3"];
 let pcChoice, yourChoice, winner; // Variables for storing choices and winner
+let pcCurrentScore, yourCurrentScore;
 
 /**######################################################################################## */
-  //SECTION : GLOBAL ELEMENT / QUERY / CLASSNAME / ID DECLARATION
+//SECTION : GLOBAL ELEMENT / QUERY / CLASSNAME / ID DECLARATION
 /**######################################################################################## */
 
 // Element selectors for rules section and game elements
@@ -36,31 +37,7 @@ let signRight = document.querySelector(".hand-sign-2");
 let signBottom = document.querySelector(".hand-sign-3");
 
 /**######################################################################################## */
-  //SECTION : GLOBAL EVENT LISTENERS
-/**######################################################################################## */
-
-// Event listener for closing the rules modal
-closeButton.addEventListener("click", () => {
-  rules.style.transformOrigin = "top right";
-  rules.style.transform = "scale(0)"; // Animate the rules to scale out
-  closeButton.style.transform = "scale(0)"; // Hide the close button
-});
-
-// Event listener for opening the rules modal
-rulesButton.addEventListener("click", () => {
-  rules.style.transform = "scale(1)"; // Animate the rules to scale in
-  closeButton.style.transform = "scale(1)"; // Show the close button
-  closeButton.style.display = "flex"; // Ensure the close button is visible
-});
-
-
-// Adding click event listeners for hand signs
-signLeft.addEventListener("click", leftHandler);
-signRight.addEventListener("click", rightHandler);
-signBottom.addEventListener("click", bottomHandler);
-
-/**######################################################################################## */
-  //SECTION : FUNCTIONS DEFINITION
+//SECTION : FUNCTIONS DEFINITION
 /**######################################################################################## */
 
 /****************************************************************************************** */
@@ -289,16 +266,12 @@ function addSecondScreen() {
     document.querySelector(".halo").style.left = "115px"; // Adjust halo position if PC wins
   }
 
-
-
   const playAgain = document.querySelector(".play-again");
 
   playAgain.addEventListener("click", () => {
     location.reload(true);
   });
-
-  
-
+  updateScore();
   startHaloAnimation(); // Start halo animation
 }
 
@@ -430,7 +403,7 @@ function getRandomNumber() {
      return         :  void
 
 /****************************************************************************************** */
- 
+
 function pcSelection() {
   pcChoice = getRandomNumber(); // Get a random number for PC's choice
   let img = document.querySelector(".hand-sign-2 img");
@@ -481,4 +454,108 @@ function pcSelectionAnimation() {
     pcSelection();
     removeFirstScreen();
   });
+}
+
+/****************************************************************************************** */
+/*  Function Name  :  updateScore
+
+    Description    :  
+
+    Param          :  null
+
+    return         :  void
+
+/****************************************************************************************** */
+
+function updateScore() {
+  let computerScore = document.querySelector("#computer-score");
+  let yourScore = document.querySelector("#your-score");
+
+  downloadCurrentScore();
+
+  console.log(yourCurrentScore);
+  console.log(pcCurrentScore);
+  if (winner == "pc") {
+    pcCurrentScore += 1;
+  }
+  if (winner == "you") {
+    yourCurrentScore += 1;
+  }
+
+  uploadCurrentScore();
+
+  computerScore.textContent = pcCurrentScore;
+  yourScore.textContent = yourCurrentScore;
+}
+
+/****************************************************************************************** */
+/*  Function Name  :  <function name>
+
+    Description    :  
+
+    Param          :  null
+
+    return         :  void
+
+/****************************************************************************************** */
+function downloadCurrentScore() {
+  yourCurrentScore = parseInt(sessionStorage.getItem("yourScore"));
+  pcCurrentScore = parseInt(sessionStorage.getItem("pcScore"));
+}
+
+/****************************************************************************************** */
+/*  Function Name  :  <function name>
+
+    Description    :  
+
+    Param          :  null
+
+    return         :  void
+
+/****************************************************************************************** */
+function uploadCurrentScore() {
+  console.log(yourCurrentScore);
+  console.log(pcCurrentScore);
+  sessionStorage.setItem("pcScore", pcCurrentScore);
+  sessionStorage.setItem("yourScore", yourCurrentScore);
+}
+/**######################################################################################## */
+//SECTION : GLOBAL EVENT LISTENERS
+/**######################################################################################## */
+
+// Event listener for closing the rules modal
+closeButton.addEventListener("click", () => {
+  rules.style.transformOrigin = "top right";
+  rules.style.transform = "scale(0)"; // Animate the rules to scale out
+  closeButton.style.transform = "scale(0)"; // Hide the close button
+});
+
+// Event listener for opening the rules modal
+rulesButton.addEventListener("click", () => {
+  rules.style.transform = "scale(1)"; // Animate the rules to scale in
+  closeButton.style.transform = "scale(1)"; // Show the close button
+  closeButton.style.display = "flex"; // Ensure the close button is visible
+});
+
+// Adding click event listeners for hand signs
+signLeft.addEventListener("click", leftHandler);
+signRight.addEventListener("click", rightHandler);
+signBottom.addEventListener("click", bottomHandler);
+
+/**######################################################################################## */
+// SECTION : Main Code
+/**######################################################################################## */
+
+if (!sessionStorage.getItem("scriptExecuted")) {
+  sessionStorage.setItem("pcScore", 0);
+  sessionStorage.setItem("yourScore", 0);
+  sessionStorage.setItem("scriptExecuted", true);
+}
+else{
+
+  let computerScore = document.querySelector('#computer-score');
+  let yourScore = document.querySelector('#your-score');
+
+  computerScore.textContent=parseInt(sessionStorage.getItem('pcScore'));
+  yourScore.textContent=parseInt(sessionStorage.getItem('yourScore'));
 }

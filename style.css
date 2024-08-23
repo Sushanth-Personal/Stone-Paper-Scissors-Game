@@ -174,8 +174,8 @@ body {
   bottom: 100px;
   right: 30px;
   position: absolute;
-  width: 340px;
-  height: 400px;
+  width: 22%;
+  height: 53%;
   box-sizing: border-box;
   z-index: 10;
 }
@@ -184,8 +184,8 @@ body {
   position: absolute;
   background-color: #004429;
   border: 7px solid white;
-  width: 278px;
-  height: 325px;
+  width: 80%;
+  height: 81%;
   border-radius: 13px;
   left: 0;
   bottom: 0;
