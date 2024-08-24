@@ -11,6 +11,8 @@ https://sushanth-personal.github.io/Stone-Paper-Scissors-Game/
 
 ![rsz_1startscreen](https://github.com/user-attachments/assets/53b8c0e7-dab1-475a-a0d2-e2cbc050a242)
 
+**Result Screen:**
+
 # 🌟 Features
 **Responsive Design:** The game is fully responsive, ensuring a great experience on any device, whether it's a mobile, tablet, or desktop.
 
@@ -55,9 +57,6 @@ Your score will be updated and saved across sessions.
 
 Clicking on the Next Button will give you with final result based on your current scores.
 
-**Gameplay Screen:**
-
-**Result Screen:**
 # 💡 Challenges and Solutions
 One of the main challenges I faced was ensuring the game score persisted even after the page reloads. I tackled this by using session storage effectively, which allowed me to maintain the user's score seamlessly across multiple sessions. 
 
