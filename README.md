@@ -65,8 +65,7 @@ One of the main challenges I faced was ensuring the game score persisted even af
 Another main challenge was the Hurray Page star animation where i need to create a curved motion for the stars. This was solved by making the image container to move in X axis and the image to move in Y Axis and both at different speeds. This way a curve was generated and by controlling the speed we can create different smooth curves.
 
 # 🚀 Getting Started
-Clone this repository:
-bash
-Copy code
-git clone https://github.com/yourusername/stone-paper-scissors.git
+**Clone this repository:**
+Copy code  
+https://github.com/Sushanth-Personal/Stone-Paper-Scissors-Game.git
 Open index.html in your browser to start playing.
