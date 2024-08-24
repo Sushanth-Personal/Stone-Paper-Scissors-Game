@@ -66,6 +66,9 @@ Another main challenge was the Hurray Page star animation where i need to create
 
 # 🚀 Getting Started
 **Clone this repository:**
+
 Copy code  
+
 https://github.com/Sushanth-Personal/Stone-Paper-Scissors-Game.git
+
 Open index.html in your browser to start playing.
