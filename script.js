@@ -22,6 +22,7 @@ let url = ["images/scissor.png", "images/paper.png", "images/stone.png"];
 let yourChoiceStyle = ["hand-sign-1", "hand-sign-2", "hand-sign-3"];
 let pcChoice, yourChoice, winner; // Variables for storing choices and winner
 let pcCurrentScore, yourCurrentScore;
+let gameOver = false;
 
 /**######################################################################################## */
 //SECTION : GLOBAL ELEMENT / QUERY / CLASSNAME / ID DECLARATION
@@ -50,6 +51,7 @@ let signBottom = document.querySelector(".hand-sign-3");
     return         :  void
 
 /****************************************************************************************** */
+
 // Handlers for click events on each hand sign
 function leftHandler() {
   clickAnimation("scissor");
@@ -152,6 +154,7 @@ function clickAnimation(sign) {
     return         :  void
 
 /****************************************************************************************** */
+
 function removeFirstScreen() {
   let element = document.querySelectorAll(".game"); // Select all game elements
   let halo = document.querySelectorAll(".halo"); // Select all halo elements
@@ -211,7 +214,9 @@ function addSecondScreen() {
                       <img src="${url[pcChoice]}" />
                     </div>
                   </div>
-                </div>`;
+                </div>
+                <div class="next-button" id="next">NEXT</div>
+                `;
   }
   if (winner == "pc") {
     container.innerHTML = `
@@ -237,7 +242,9 @@ function addSecondScreen() {
                       <img src="${url[pcChoice]}" />
                     </div>
                   </div>
-                </div>`;
+                </div>
+                <div class="next-button" id="next">NEXT</div>
+                `;
   }
   if (winner == "draw") {
     container.innerHTML = `
@@ -257,7 +264,9 @@ function addSecondScreen() {
                       <img src="${url[pcChoice]}" />
                     </div>
                   </div>
-                </div>`;
+                </div>
+                <div class="next-button" id="next">NEXT</div>
+                `;
   }
 
   document.body.appendChild(container); // Add the container to the body
@@ -272,6 +281,16 @@ function addSecondScreen() {
     location.reload(true);
   });
   updateScore();
+  moveRulesButton();
+
+  //Adding event listener to next button
+
+  let nextButton = document.querySelector("#next");
+
+  nextButton.addEventListener("click", () => {
+    showFinalResult();
+  });
+
   startHaloAnimation(); // Start halo animation
 }
 
@@ -459,7 +478,7 @@ function pcSelectionAnimation() {
 /****************************************************************************************** */
 /*  Function Name  :  updateScore
 
-    Description    :  
+    Description    :  Result score updated after a game to screen and Session storage
 
     Param          :  null
 
@@ -471,7 +490,7 @@ function updateScore() {
   let computerScore = document.querySelector("#computer-score");
   let yourScore = document.querySelector("#your-score");
 
-  downloadCurrentScore();
+  downloadCurrentScore(); // Get current score from session storage
 
   console.log(yourCurrentScore);
   console.log(pcCurrentScore);
@@ -482,60 +501,273 @@ function updateScore() {
     yourCurrentScore += 1;
   }
 
-  uploadCurrentScore();
+  uploadCurrentScore(); // Upload updated current score to sessio storage
 
   computerScore.textContent = pcCurrentScore;
   yourScore.textContent = yourCurrentScore;
 }
 
 /****************************************************************************************** */
-/*  Function Name  :  <function name>
+/*  Function Name  :  downloadCurrentScore
 
-    Description    :  
+    Description    :  Get Current Score date from Session Storage during reload
 
     Param          :  null
 
     return         :  void
 
 /****************************************************************************************** */
+
 function downloadCurrentScore() {
   yourCurrentScore = parseInt(sessionStorage.getItem("yourScore"));
   pcCurrentScore = parseInt(sessionStorage.getItem("pcScore"));
 }
 
 /****************************************************************************************** */
-/*  Function Name  :  <function name>
+/*  Function Name  :  uploadCurrentScore
 
-    Description    :  
+    Description    :  Update score to Session Storage
 
     Param          :  null
 
     return         :  void
 
 /****************************************************************************************** */
+
 function uploadCurrentScore() {
   console.log(yourCurrentScore);
   console.log(pcCurrentScore);
   sessionStorage.setItem("pcScore", pcCurrentScore);
   sessionStorage.setItem("yourScore", yourCurrentScore);
 }
+
+/****************************************************************************************** */
+/*  Function Name  :  moveRulesButton
+
+    Description    :  Rules button is moved to give space for next Button
+
+    Param          :  null
+
+    return         :  void
+
+/****************************************************************************************** */
+
+function moveRulesButton() {
+  rulesButton.style.transition = "transform 0.5s";
+  rulesButton.style.transform = "translateX(-150px)";
+}
+
+/****************************************************************************************** */
+/*  Function Name  :  setEventListeners
+
+    Description    :  Set event listeners for rules button, close button
+
+    Param          :  null
+
+    return         :  void
+
+/****************************************************************************************** */
+
+function setEventListeners() {
+
+  const rulesButton = document.querySelector(".rules-button");
+  let closeButton = document.getElementById("close-button");
+  let rules = document.querySelector(".rules");
+  const playAgain = document.querySelector(".play-again");
+
+  // Event listener for closing the rules modal
+  closeButton.addEventListener("click", () => {
+    rules.style.transformOrigin = "top right";
+    rules.style.transform = "scale(0)"; // Animate the rules to scale out
+    closeButton.style.transform = "scale(0)"; // Hide the close button
+  });
+
+  // Event listener for opening the rules modal
+  rulesButton.addEventListener("click", () => {
+    rules.style.transform = "scale(1)"; // Animate the rules to scale in
+    closeButton.style.transform = "scale(1)"; // Show the close button
+    closeButton.style.display = "flex"; // Ensure the close button is visible
+  });
+
+    // Play again event listener
+    playAgain.addEventListener("click", () => {
+      if(gameOver == true){
+        sessionStorage.setItem('scriptExecuted',false);
+      }
+      location.reload(true);
+    });
+
+  
+  
+}
+
+/****************************************************************************************** */
+/*  Function Name  :  showFinalResult
+
+    Description    :  Create a new Hurray page on victory
+
+    Param          :  null
+
+    return         :  void
+
+/****************************************************************************************** */
+
+function showFinalResult() {
+  gameOver = true;
+  downloadCurrentScore();
+
+
+  document.body.innerHTML = `
+  <div class = "top-container">
+  <img src="images/cup.png" id="cup">
+  <div class = "star-1">
+    <img src="images/star.png"  id="star-1">
+  </div>
+    <div class = "star-2">
+    <img src="images/star.png"  id="star-2">
+  </div>
+ <div class = "star-3">
+    <img src="images/star.png"  id="star-3">
+  </div>
+
+  <div class="star-4">
+    <img src="images/star.png"  id="star-4">
+  </div>
+<div class="star-5">
+    <img src="images/star.png"  id="star-5">
+  </div>
+  <div class="star-6">
+    <img src="images/star.png"  id="star-6">
+  </div>
+<div class ="flicker-container">
+  <img src="images/star.png" class="flicker-1" id="star-7">
+  <img src="images/star.png" class="flicker-1" id="star-8">
+  <img src="images/star.png" class="flicker-2" id="star-9">
+  <img src="images/star.png" class="flicker-2" id="star-10">
+  <img src="images/star.png" class="flicker-3" id="star-11">
+  <img src="images/star.png" class="flicker-3" id="star-12">
+  </div>
+  </div>
+  <button class="play-again">PLAY AGAIN</button>
+  <!-- Rules popup -->
+    <button class="rules-button" id="rules-button">RULES</button>
+    <div class="rules-container">
+      <div class="rules">
+        <h1>Game Rules</h1>
+        <ul>
+          <li>
+            Rock beats scissors, scissors beat paper, and paper beats rock.
+          </li>
+          <li>
+            Agree ahead of time whether you’ll count off “rock, paper, scissors,
+            shoot” or just “rock, paper, scissors.”
+          </li>
+          <li>
+            Use rock, paper, scissors to settle minor decisions or simply play
+            to pass the time
+          </li>
+          <li>
+            If both players lay down the same hand, each player lays down
+            another hand
+          </li>
+        </ul>
+      </div>
+      <button class="close-button" id="close-button">X</button>
+    </div>
+
+    <div class = "win-text-1">HURRAY!!</div>
+    <div class = "win-text-2">YOU WON THE GAME</div>
+  `;
+
+
+  setEventListeners();
+
+  
+
+  let flickers1 = document.querySelectorAll('.flicker-1');
+
+  let isScaled1=true;
+
+  setInterval(()=>{
+
+    flickers1.forEach((flicker)=>{
+      if(isScaled1){
+      flicker.style.opacity=1;
+    } else{
+      flicker.style.opacity=0;
+    }
+  });
+
+    isScaled1=!isScaled1;
+  },300);
+
+  let flickers2 = document.querySelectorAll('.flicker-2');
+  let isScaled2=false;
+  setInterval(()=>{
+
+    flickers2.forEach((flicker)=>{
+      if(isScaled2){
+      flicker.style.opacity=1;
+    } else{
+      flicker.style.opacity=0;
+    }
+  });
+
+    isScaled2=!isScaled2;
+  },300);
+
+  let flickers3 = document.querySelectorAll('.flicker-3');
+  let isScaled3=false;
+  setInterval(()=>{
+
+    flickers3.forEach((flicker)=>{
+      if(isScaled3){
+      flicker.style.opacity=1;
+    } else{
+      flicker.style.opacity=0;
+    }
+  });
+
+    isScaled3=!isScaled3;
+  },150);
+
+
+  if (yourCurrentScore < pcCurrentScore) {
+    let topContainer = document.querySelector('.top-container'); // Select the div with the class 'top-container'
+    let winText1 = document.querySelector('.win-text-1');
+    let winText2 = document.querySelector('.win-text-2');
+
+    if (topContainer) {  // Check if the element exists
+      topContainer.remove();  // Remove the element from the DOM
+    }
+
+    winText1.textContent = 'ALAS !!';
+    winText1.style.top='350px';
+    winText1.style.fontSize='100px';
+    winText2.textContent = 'YOU LOST THE GAME';
+    winText2.style.top='500px';
+  }
+
+  if (yourCurrentScore == pcCurrentScore) {
+    let topContainer = document.querySelector('.top-container'); // Select the div with the class 'top-container'
+    let winText1 = document.querySelector('.win-text-1');
+    let winText2 = document.querySelector('.win-text-2');
+
+    if (topContainer) {  // Check if the element exists
+      topContainer.remove();  // Remove the element from the DOM
+    }
+
+    winText1.textContent = 'ITS A BORING DRAW !!';
+    winText1.style.top='350px';
+    winText1.style.fontSize='100px';
+    winText2.textContent = '';
+
+  }
+}
+
 /**######################################################################################## */
 //SECTION : GLOBAL EVENT LISTENERS
 /**######################################################################################## */
-
-// Event listener for closing the rules modal
-closeButton.addEventListener("click", () => {
-  rules.style.transformOrigin = "top right";
-  rules.style.transform = "scale(0)"; // Animate the rules to scale out
-  closeButton.style.transform = "scale(0)"; // Hide the close button
-});
-
-// Event listener for opening the rules modal
-rulesButton.addEventListener("click", () => {
-  rules.style.transform = "scale(1)"; // Animate the rules to scale in
-  closeButton.style.transform = "scale(1)"; // Show the close button
-  closeButton.style.display = "flex"; // Ensure the close button is visible
-});
 
 // Adding click event listeners for hand signs
 signLeft.addEventListener("click", leftHandler);
@@ -546,16 +778,27 @@ signBottom.addEventListener("click", bottomHandler);
 // SECTION : Main Code
 /**######################################################################################## */
 
-if (!sessionStorage.getItem("scriptExecuted")) {
+
+if (sessionStorage.getItem("scriptExecuted")=="false") {
+
+  let computerScore = document.querySelector("#computer-score");
+  let yourScore = document.querySelector("#your-score");
+
   sessionStorage.setItem("pcScore", 0);
   sessionStorage.setItem("yourScore", 0);
   sessionStorage.setItem("scriptExecuted", true);
-}
-else{
 
-  let computerScore = document.querySelector('#computer-score');
-  let yourScore = document.querySelector('#your-score');
+  computerScore.textContent = parseInt(sessionStorage.getItem("pcScore"));
+  yourScore.textContent = parseInt(sessionStorage.getItem("yourScore"));
 
-  computerScore.textContent=parseInt(sessionStorage.getItem('pcScore'));
-  yourScore.textContent=parseInt(sessionStorage.getItem('yourScore'));
+} else {
+  let computerScore = document.querySelector("#computer-score");
+  let yourScore = document.querySelector("#your-score");
+
+  computerScore.textContent = parseInt(sessionStorage.getItem("pcScore"));
+  yourScore.textContent = parseInt(sessionStorage.getItem("yourScore"));
 }
+
+setEventListeners();
+
+

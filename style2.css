@@ -103,6 +103,28 @@ body {
     position: absolute;
     right: 5%;
     bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+  
+  }
+
+  .next-button{
+    background-color: #d9d9d900;
+    color: white;
+    border: 2px solid white;
+    font-size: 21px;
+    font-weight: 600;
+    border-radius: 10px;
+    height: 40px;
+    width: 120px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .rules-container {
@@ -290,8 +312,10 @@ body {
     background-color: white;
     border:none;
     border-radius: 9px;
-    transform: translate(0,90px);
+    position: absolute;
+    top: 650px;
   }
+
 
   .game-container{
     width:80vw;
@@ -338,4 +362,386 @@ body {
 
   }
 
- 
+
+
+.win-text-1{
+  position: absolute;
+  top:450px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-size: 91px;
+  color:white;
+}
+
+.win-text-2{
+  position: absolute;
+  top:550px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  font-size: 41px;
+  color:white;
+}
+
+
+
+
+
+
+
+
+  #cup{
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top:200px;
+    z-index: 10;
+  }
+
+  #star-1{
+    width:30px;
+    height: 30px;
+    z-index: 5;
+    animation: starY1 1.5s infinite;
+
+  }
+  .star-1{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:200px;
+    animation: starX1 1.5s infinite;
+    z-index: 5;
+    
+  }
+
+  @keyframes starX1 {
+    0%{
+      animation-timing-function: ease-in;
+    }
+  30%{
+    animation-timing-function: ease-out;
+      transform:translateX(150px) ;
+    }
+    100%{
+      transform:translateX(320px) ;
+    }
+  }
+  
+  @keyframes starY1 {
+    0%{
+      animation-timing-function: ease-out;
+    }
+    30%{
+      animation-timing-function: ease-in;
+      transform:translateY(-120px);
+    }
+    100%{
+      transform:translateY(150px) scale(4);
+    }
+  }
+
+
+  .star-2{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:200px;
+    animation: starX2 1.5s infinite;
+    z-index: 5;
+  }
+
+  #star-2{
+    
+    z-index: 5;
+    animation: starY2 1.5s infinite;
+
+  }
+
+  @keyframes starX2 {
+    0%{
+      
+      animation-timing-function: ease-in;
+    }
+  30%{
+    animation-timing-function: ease-out;
+      transform:translateX(120px);
+    }
+    100%{
+      transform:translateX(240px) scale(0.5);
+    }
+  }
+
+@keyframes starY2 {
+  0%{
+    animation-timing-function: ease-out;
+  }
+  30%{
+    animation-timing-function: ease-in;
+    transform:translateY(-120px);
+  }
+  100%{
+    transform:translateY(50px);
+  }
+}
+
+.star-3{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top:200px;
+  animation: starX3 1.5s infinite;
+  z-index: 5;
+}
+
+#star-3{
+
+  z-index: 5;
+  animation: starY3 1.5s infinite;
+
+}
+
+@keyframes starX3 {
+  0%{
+    animation-timing-function: ease-in;
+  }
+30%{
+  animation-timing-function: ease-out;
+    transform:translateX(40px);
+  }
+  100%{
+    transform:translateX(160px);
+  }
+}
+
+@keyframes starY3 {
+0%{
+  animation-timing-function: ease-out;
+}
+30%{
+  animation-timing-function: ease-in;
+  transform:translateY(-140px);
+}
+100%{
+  transform:translateY(30px) scale(0.7);
+}
+}
+
+
+
+.star-4{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top:200px;
+  animation: starX4 1.5s infinite;
+  z-index: 5;
+}
+
+#star-4{
+
+  z-index: 5;
+  animation: starY4 1.5s infinite;
+
+}
+
+@keyframes starX4 {
+  0%{
+    animation-timing-function: ease-in;
+  }
+30%{
+  animation-timing-function: ease-out;
+    transform:translateX(-90px);
+  }
+  100%{
+    transform:translateX(-160px);
+  }
+}
+
+@keyframes starY4 {
+0%{
+  animation-timing-function: ease-out;
+}
+30%{
+  animation-timing-function: ease-in;
+  transform:translateY(-140px);
+}
+100%{
+  transform:translateY(30px) scale(0.7);
+}
+}
+
+.star-5{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top:200px;
+  animation: starX5 1.5s infinite;
+  z-index: 5;
+}
+
+#star-5{
+  
+  z-index: 5;
+  animation: starY5 1.5s infinite;
+
+}
+
+@keyframes starX5 {
+  0%{
+    
+    animation-timing-function: ease-in;
+  }
+30%{
+  animation-timing-function: ease-out;
+    transform:translateX(-120px);
+  }
+  100%{
+    transform:translateX(-240px) scale(0.5);
+  }
+}
+
+@keyframes starY5 {
+0%{
+  animation-timing-function: ease-out;
+}
+30%{
+  animation-timing-function: ease-in;
+  transform:translateY(-120px);
+}
+100%{
+  transform:translateY(50px);
+}
+}
+
+#star-6{
+  width:30px;
+  height: 30px;
+  z-index: 5;
+  animation: starY6 1.5s infinite;
+
+}
+.star-6{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top:200px;
+  animation: starX6 1.5s infinite;
+  z-index: 5;
+  
+}
+
+@keyframes starX6 {
+  0%{
+    animation-timing-function: ease-in;
+  }
+30%{
+  animation-timing-function: ease-out;
+    transform:translateX(-150px) ;
+  }
+  100%{
+    transform:translateX(-320px) ;
+  }
+}
+
+@keyframes starY6{
+  0%{
+    animation-timing-function: ease-out;
+  }
+  30%{
+    animation-timing-function: ease-in;
+    transform:translateY(-120px);
+  }
+  100%{
+    transform:translateY(150px) scale(4);
+  }
+}
+
+.flicker-1{
+  width:50px;
+  height: 50px;
+  transition: 0.1s;
+} 
+
+.flicker-2{
+  width:50px;
+  height: 50px;
+  transition: 0.1s;
+} 
+
+.flicker-3{
+  width:50px;
+  height: 50px;
+  transition: 0.1s;
+} 
+
+ #star-7{
+  position: absolute;
+  top:100px;
+  right: 100px;
+}
+
+#star-8{
+  position: absolute;
+  top:250px;
+  right: 250px;
+}
+
+#star-9{
+  position: absolute;
+  top:250px;
+  left: 250px;
+}
+
+#star-10{
+  position: absolute;
+  top:100px;
+  left: 100px;
+}
+
+#star-11{
+  position: absolute;
+  top:100px;
+  left: 820px;
+}
+
+#star-11{
+  position: absolute;
+  top:50px;
+  left: 300px;
+}
+#star-12{
+  position: absolute;
+  top:50px;
+  right: 300px;
+}
+
+.flicker-container{
+
+  align-items: center;
+  width: 800px;
+  height: 400px;
+  position: relative;
+}
+
+.top-container{
+
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  padding-top: 60px;
+  background-color: #8cc461;
+  font-family: "Roboto";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  position: relative;
+}
