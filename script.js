@@ -778,8 +778,12 @@ signBottom.addEventListener("click", bottomHandler);
 // SECTION : Main Code
 /**######################################################################################## */
 
+if(sessionStorage.getItem("scriptExecuted")===null){
+  
+  sessionStorage.setItem("scriptExecuted",false);
+}
 
-if (sessionStorage.getItem("scriptExecuted")=="false") {
+if (sessionStorage.getItem("scriptExecuted")== 'false') {
 
   let computerScore = document.querySelector("#computer-score");
   let yourScore = document.querySelector("#your-score");
@@ -788,8 +792,8 @@ if (sessionStorage.getItem("scriptExecuted")=="false") {
   sessionStorage.setItem("yourScore", 0);
   sessionStorage.setItem("scriptExecuted", true);
 
-  computerScore.textContent = parseInt(sessionStorage.getItem("pcScore"));
-  yourScore.textContent = parseInt(sessionStorage.getItem("yourScore"));
+  computerScore.textContent = 0;
+  yourScore.textContent = 0;
 
 } else {
   let computerScore = document.querySelector("#computer-score");
