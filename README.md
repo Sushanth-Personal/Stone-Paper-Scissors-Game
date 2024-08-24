@@ -1,6 +1,8 @@
 
 # Stone Paper Scissors Game
-
+# 📸 Screenshots
+**Game Start Screen:**
+![rsz_1startscreen](https://github.com/user-attachments/assets/53b8c0e7-dab1-475a-a0d2-e2cbc050a242)
 # 🚀 Project Overview
 This project is a fully responsive Stone Paper Scissors game that I built using HTML, CSS, JavaScript, and CSS animations. The game features dynamic content that changes across multiple screens, providing a seamless and interactive user experience. Additionally, the game leverages session storage to retain the player's score even after the page is reloaded, showcasing the use of persistent state management in a web application.
 # Live  Demo
@@ -48,9 +50,6 @@ The winner is determined based on the classic game rules.
 Your score will be updated and saved across sessions.
 
 Clicking on the Next Button will give you with final result based on your current scores.
-
-# 📸 Screenshots
-**Game Start Screen:**
 
 **Gameplay Screen:**
 
