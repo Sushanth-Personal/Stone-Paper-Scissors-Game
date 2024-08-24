@@ -240,11 +240,8 @@ body {
     height: 400px;
     border-radius: 50%;
     border: none;
-    justify-content: center;
-    align-items: center;
     z-index: 5;
     position: absolute;
-    left: 35px;
     top:87px;
     display:flex;
     justify-content: center;
@@ -313,7 +310,7 @@ body {
     border:none;
     border-radius: 9px;
     position: absolute;
-    top: 650px;
+    transform:translateY(150px);
   }
 
 
@@ -332,7 +329,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 400px;
     height: 500px;
   }
   .right-handsign-container{
@@ -341,7 +338,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 400px;
     height: 500px;
   }
 
@@ -384,7 +381,30 @@ body {
 
 
 
+@media screen and (max-width:1100px) {
+  .game-container{
+    height: 70vh;
+    width: 100vw;
+  }
 
+  #left, #right{
+    transition: 0s;
+    top:100px;
+  }
+
+  .halo{
+    top:-13px;
+  }
+
+  .you-picked{
+
+    top:50px;
+  }
+
+  .middle{
+    transform: translateY(-300px);
+  }
+}
 
 
 

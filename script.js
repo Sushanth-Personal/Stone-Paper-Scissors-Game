@@ -23,7 +23,7 @@ let yourChoiceStyle = ["hand-sign-1", "hand-sign-2", "hand-sign-3"];
 let pcChoice, yourChoice, winner; // Variables for storing choices and winner
 let pcCurrentScore, yourCurrentScore;
 let gameOver = false;
-
+let currentPage = 1;
 /**######################################################################################## */
 //SECTION : GLOBAL ELEMENT / QUERY / CLASSNAME / ID DECLARATION
 /**######################################################################################## */
@@ -178,6 +178,7 @@ function removeFirstScreen() {
 /****************************************************************************************** */
 
 function addSecondScreen() {
+  currentPage=2;
   // Switch to the second stylesheet for different styles
   const linkElement = document.querySelector(
     'link[rel="stylesheet"][href="style.css"]'
@@ -270,28 +271,47 @@ function addSecondScreen() {
   }
 
   document.body.appendChild(container); // Add the container to the body
-
+  makeResponsive();
+  setEventListeners();
   if (winner == "pc") {
-    document.querySelector(".halo").style.left = "115px"; // Adjust halo position if PC wins
+    if (window.innerWidth > 1100) {
+      document.querySelector(".halo").style.right = "-10px"; // Adjust halo position if PC wins
+      document.querySelector(".you-picked").style.top = "150px";
+    }else{
+      document.querySelector(".halo").style.right = "-10px"; // Adjust halo position if PC wins
+    }
   }
 
-  const playAgain = document.querySelector(".play-again");
+  if (winner == "draw") {
+    if (window.innerWidth > 1100) {
+      document.querySelector(".you-picked").style.top = "150px";
+    }
+  }
+  if (winner == "you") {
+    if (window.innerWidth > 1100) {
+      
+      document.querySelector(".halo").style.left = "35px"; // Adjust halo position if PC wins
+    }
+    else{
+      document.querySelector(".halo").style.left = "35px"; // Adjust halo position if PC wins
+    }
+  }
 
-  playAgain.addEventListener("click", () => {
-    location.reload(true);
-  });
   updateScore();
   moveRulesButton();
+ 
 
   //Adding event listener to next button
 
   let nextButton = document.querySelector("#next");
 
   nextButton.addEventListener("click", () => {
+    currentPage=3;
     showFinalResult();
   });
 
   startHaloAnimation(); // Start halo animation
+
 }
 
 /****************************************************************************************** */
@@ -569,7 +589,6 @@ function moveRulesButton() {
 /****************************************************************************************** */
 
 function setEventListeners() {
-
   const rulesButton = document.querySelector(".rules-button");
   let closeButton = document.getElementById("close-button");
   let rules = document.querySelector(".rules");
@@ -589,16 +608,13 @@ function setEventListeners() {
     closeButton.style.display = "flex"; // Ensure the close button is visible
   });
 
-    // Play again event listener
-    playAgain.addEventListener("click", () => {
-      if(gameOver == true){
-        sessionStorage.setItem('scriptExecuted',false);
-      }
-      location.reload(true);
-    });
-
-  
-  
+  // Play again event listener
+  playAgain.addEventListener("click", () => {
+    if (gameOver == true) {
+      sessionStorage.setItem("scriptExecuted", false);
+    }
+    location.reload(true);
+  });
 }
 
 /****************************************************************************************** */
@@ -615,7 +631,6 @@ function setEventListeners() {
 function showFinalResult() {
   gameOver = true;
   downloadCurrentScore();
-
 
   document.body.innerHTML = `
   <div class = "top-container">
@@ -679,88 +694,135 @@ function showFinalResult() {
     <div class = "win-text-2">YOU WON THE GAME</div>
   `;
 
-
   setEventListeners();
 
-  
+  let flickers1 = document.querySelectorAll(".flicker-1");
 
-  let flickers1 = document.querySelectorAll('.flicker-1');
+  let isScaled1 = true;
 
-  let isScaled1=true;
+  setInterval(() => {
+    flickers1.forEach((flicker) => {
+      if (isScaled1) {
+        flicker.style.opacity = 1;
+      } else {
+        flicker.style.opacity = 0;
+      }
+    });
 
-  setInterval(()=>{
+    isScaled1 = !isScaled1;
+  }, 300);
 
-    flickers1.forEach((flicker)=>{
-      if(isScaled1){
-      flicker.style.opacity=1;
-    } else{
-      flicker.style.opacity=0;
-    }
-  });
+  let flickers2 = document.querySelectorAll(".flicker-2");
+  let isScaled2 = false;
+  setInterval(() => {
+    flickers2.forEach((flicker) => {
+      if (isScaled2) {
+        flicker.style.opacity = 1;
+      } else {
+        flicker.style.opacity = 0;
+      }
+    });
 
-    isScaled1=!isScaled1;
-  },300);
+    isScaled2 = !isScaled2;
+  }, 300);
 
-  let flickers2 = document.querySelectorAll('.flicker-2');
-  let isScaled2=false;
-  setInterval(()=>{
+  let flickers3 = document.querySelectorAll(".flicker-3");
+  let isScaled3 = false;
+  setInterval(() => {
+    flickers3.forEach((flicker) => {
+      if (isScaled3) {
+        flicker.style.opacity = 1;
+      } else {
+        flicker.style.opacity = 0;
+      }
+    });
 
-    flickers2.forEach((flicker)=>{
-      if(isScaled2){
-      flicker.style.opacity=1;
-    } else{
-      flicker.style.opacity=0;
-    }
-  });
-
-    isScaled2=!isScaled2;
-  },300);
-
-  let flickers3 = document.querySelectorAll('.flicker-3');
-  let isScaled3=false;
-  setInterval(()=>{
-
-    flickers3.forEach((flicker)=>{
-      if(isScaled3){
-      flicker.style.opacity=1;
-    } else{
-      flicker.style.opacity=0;
-    }
-  });
-
-    isScaled3=!isScaled3;
-  },150);
-
+    isScaled3 = !isScaled3;
+  }, 150);
 
   if (yourCurrentScore < pcCurrentScore) {
-    let topContainer = document.querySelector('.top-container'); // Select the div with the class 'top-container'
-    let winText1 = document.querySelector('.win-text-1');
-    let winText2 = document.querySelector('.win-text-2');
+    let topContainer = document.querySelector(".top-container"); // Select the div with the class 'top-container'
+    let winText1 = document.querySelector(".win-text-1");
+    let winText2 = document.querySelector(".win-text-2");
 
-    if (topContainer) {  // Check if the element exists
-      topContainer.remove();  // Remove the element from the DOM
+    if (topContainer) {
+      // Check if the element exists
+      topContainer.remove(); // Remove the element from the DOM
     }
 
-    winText1.textContent = 'ALAS !!';
-    winText1.style.top='350px';
-    winText1.style.fontSize='100px';
-    winText2.textContent = 'YOU LOST THE GAME';
-    winText2.style.top='500px';
+    winText1.textContent = "ALAS !!";
+    winText1.style.top = "350px";
+    winText1.style.fontSize = "100px";
+    winText2.textContent = "YOU LOST THE GAME";
+    winText2.style.top = "500px";
+   
   }
 
   if (yourCurrentScore == pcCurrentScore) {
-    let topContainer = document.querySelector('.top-container'); // Select the div with the class 'top-container'
-    let winText1 = document.querySelector('.win-text-1');
-    let winText2 = document.querySelector('.win-text-2');
+    let topContainer = document.querySelector(".top-container"); // Select the div with the class 'top-container'
+    let winText1 = document.querySelector(".win-text-1");
+    let winText2 = document.querySelector(".win-text-2");
 
-    if (topContainer) {  // Check if the element exists
-      topContainer.remove();  // Remove the element from the DOM
+    if (topContainer) {
+      // Check if the element exists
+      topContainer.remove(); // Remove the element from the DOM
     }
 
-    winText1.textContent = 'ITS A BORING DRAW !!';
-    winText1.style.top='350px';
-    winText1.style.fontSize='100px';
-    winText2.textContent = '';
+    winText1.textContent = "ITS A BORING DRAW !!";
+    winText1.style.top = "350px";
+    winText1.style.fontSize = "100px";
+    winText2.textContent = "";
+  }
+
+  let playAgain=document.querySelector('.play-again');
+
+  playAgain.style.transform='translateY(600px)';
+}
+
+/****************************************************************************************** */
+/*  Function Name  :  <function name>
+
+    Description    :  
+
+    Param          :  null
+
+    return         :  void
+
+/****************************************************************************************** */
+function makeResponsive() {
+  if (window.innerWidth < 1100 && currentPage==2) {
+    document.querySelectorAll(".middle").forEach((element) => element.remove());
+
+    let newContainer = document.createElement("div");
+
+    if(winner=="you"){
+    newContainer.innerHTML = `
+    <div class="middle">
+                    <div class="you-win">YOU WIN</div>
+                    <div class="against-pc">AGAINST PC</div>
+                    <button class="play-again">PLAY AGAIN</button>
+    </div>
+    `;
+    }
+    if(winner=="pc"){
+      newContainer.innerHTML = `
+      <div class="middle">
+                      <div class="you-win">YOU LOST</div>
+                      <div class="against-pc">AGAINST PC</div>
+                      <button class="play-again">PLAY AGAIN</button>
+      </div>
+      `;
+      }
+      if(winner=="draw"){
+        newContainer.innerHTML = `
+        <div class="middle">
+                        <div class="you-win">TIE UP</div>
+                        <div class="against-pc"></div>
+                        <button class="play-again">PLAY AGAIN</button>
+        </div>
+        `;
+        }
+    document.body.appendChild(newContainer);
 
   }
 }
@@ -778,13 +840,11 @@ signBottom.addEventListener("click", bottomHandler);
 // SECTION : Main Code
 /**######################################################################################## */
 
-if(sessionStorage.getItem("scriptExecuted")===null){
-  
-  sessionStorage.setItem("scriptExecuted",false);
+if (sessionStorage.getItem("scriptExecuted") === null) {
+  sessionStorage.setItem("scriptExecuted", false);
 }
 
-if (sessionStorage.getItem("scriptExecuted")== 'false') {
-
+if (sessionStorage.getItem("scriptExecuted") == "false") {
   let computerScore = document.querySelector("#computer-score");
   let yourScore = document.querySelector("#your-score");
 
@@ -794,7 +854,6 @@ if (sessionStorage.getItem("scriptExecuted")== 'false') {
 
   computerScore.textContent = 0;
   yourScore.textContent = 0;
-
 } else {
   let computerScore = document.querySelector("#computer-score");
   let yourScore = document.querySelector("#your-score");
