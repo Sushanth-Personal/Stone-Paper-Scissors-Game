@@ -4,11 +4,13 @@
 /*
  *
  *
- * AUTHOR    : SUSHANTH P
+ * AUTHOR       : SUSHANTH P
  *
- * MAIL ID   : sushanthp.calicut@gmail.com
+ * MAIL ID      : sushanthp.calicut@gmail.com
  *
- * TITLE     : STONE PAPER SCISSORS GAME SCRIPT
+ * TITLE        : STONE PAPER SCISSORS GAME SCRIPT
+ *
+ * DURATION     : AUG 20 TO AUG 24  - 5 DAYS
  *
  *
  */
@@ -178,7 +180,7 @@ function removeFirstScreen() {
 /****************************************************************************************** */
 
 function addSecondScreen() {
-  currentPage=2;
+  currentPage = 2;
   // Switch to the second stylesheet for different styles
   const linkElement = document.querySelector(
     'link[rel="stylesheet"][href="style.css"]'
@@ -271,14 +273,16 @@ function addSecondScreen() {
   }
 
   document.body.appendChild(container); // Add the container to the body
+ 
   makeResponsive();
   setEventListeners();
+  
   if (winner == "pc") {
     if (window.innerWidth > 1100) {
-      document.querySelector(".halo").style.right = "-10px"; // Adjust halo position if PC wins
+      document.querySelector(".halo").style.right = "-10px"; 
       document.querySelector(".you-picked").style.top = "150px";
-    }else{
-      document.querySelector(".halo").style.right = "-10px"; // Adjust halo position if PC wins
+    } else {
+      document.querySelector(".halo").style.right = "-10px"; 
     }
   }
 
@@ -289,29 +293,25 @@ function addSecondScreen() {
   }
   if (winner == "you") {
     if (window.innerWidth > 1100) {
-      
-      document.querySelector(".halo").style.left = "35px"; // Adjust halo position if PC wins
-    }
-    else{
-      document.querySelector(".halo").style.left = "35px"; // Adjust halo position if PC wins
+      document.querySelector(".halo").style.left = "35px";
+    } else {
+      document.querySelector(".halo").style.left = "35px"; 
     }
   }
 
   updateScore();
   moveRulesButton();
- 
 
   //Adding event listener to next button
 
   let nextButton = document.querySelector("#next");
 
   nextButton.addEventListener("click", () => {
-    currentPage=3;
+    currentPage = 3;
     showFinalResult();
   });
 
   startHaloAnimation(); // Start halo animation
-
 }
 
 /****************************************************************************************** */
@@ -755,7 +755,6 @@ function showFinalResult() {
     winText1.style.fontSize = "100px";
     winText2.textContent = "YOU LOST THE GAME";
     winText2.style.top = "500px";
-   
   }
 
   if (yourCurrentScore == pcCurrentScore) {
@@ -774,29 +773,30 @@ function showFinalResult() {
     winText2.textContent = "";
   }
 
-  let playAgain=document.querySelector('.play-again');
+  let playAgain = document.querySelector(".play-again");
 
-  playAgain.style.transform='translateY(600px)';
+  playAgain.style.transform = "translateY(600px)";
 }
 
 /****************************************************************************************** */
-/*  Function Name  :  <function name>
+/*  Function Name  :  makeResponsive
 
-    Description    :  
+    Description    :  Function to make the screen responsive to lower screen sizes
 
     Param          :  null
 
     return         :  void
 
 /****************************************************************************************** */
+
 function makeResponsive() {
-  if (window.innerWidth < 1100 && currentPage==2) {
+  if (window.innerWidth < 1100 && currentPage == 2) {
     document.querySelectorAll(".middle").forEach((element) => element.remove());
 
     let newContainer = document.createElement("div");
 
-    if(winner=="you"){
-    newContainer.innerHTML = `
+    if (winner == "you") {
+      newContainer.innerHTML = `
     <div class="middle">
                     <div class="you-win">YOU WIN</div>
                     <div class="against-pc">AGAINST PC</div>
@@ -804,7 +804,7 @@ function makeResponsive() {
     </div>
     `;
     }
-    if(winner=="pc"){
+    if (winner == "pc") {
       newContainer.innerHTML = `
       <div class="middle">
                       <div class="you-win">YOU LOST</div>
@@ -812,18 +812,17 @@ function makeResponsive() {
                       <button class="play-again">PLAY AGAIN</button>
       </div>
       `;
-      }
-      if(winner=="draw"){
-        newContainer.innerHTML = `
+    }
+    if (winner == "draw") {
+      newContainer.innerHTML = `
         <div class="middle">
                         <div class="you-win">TIE UP</div>
                         <div class="against-pc"></div>
                         <button class="play-again">PLAY AGAIN</button>
         </div>
         `;
-        }
+    }
     document.body.appendChild(newContainer);
-
   }
 }
 
@@ -863,5 +862,3 @@ if (sessionStorage.getItem("scriptExecuted") == "false") {
 }
 
 setEventListeners();
-
-
