@@ -13,6 +13,8 @@ https://sushanth-personal.github.io/Stone-Paper-Scissors-Game/
 
 **Result Screen:**
 
+![rsz_2resultscreen](https://github.com/user-attachments/assets/58ae3776-2b40-4519-9c50-5d7992cbbfe5)
+
 # 🌟 Features
 **Responsive Design:** The game is fully responsive, ensuring a great experience on any device, whether it's a mobile, tablet, or desktop.
 
